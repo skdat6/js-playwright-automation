@@ -1,0 +1,21 @@
+{
+  "name": "js-playwright-automation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/skdat6/js-playwright-automation.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/skdat6/js-playwright-automation/issues"
+  },
+  "homepage": "https://github.com/skdat6/js-playwright-automation#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.31.2"
+  }
+}
