@@ -17,5 +17,8 @@
   "homepage": "https://github.com/skdat6/js-playwright-automation#readme",
   "devDependencies": {
     "@playwright/test": "^1.31.2"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.3"
   }
 }
