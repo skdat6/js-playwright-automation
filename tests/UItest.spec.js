@@ -78,3 +78,46 @@ test('Add second item', async ({ page }) => {
     expect(await nthBtn.textContent() == 'Remove');
 
 });
+
+test('Select filter option', async ({ page }) => {
+
+    await page.goto('https://www.saucedemo.com/');
+    await page.locator('//*[@id="user-name"]').type('standard_user');
+    await page.locator('//*[@id="password"]').type('secret_sauce');
+    await page.locator('//*[@id="login-button"]').click();
+    const dropdown = page.locator('select.product_sort_container');
+    await dropdown.selectOption('za');
+
+
+});
+
+test('Items added match cart badge', async ({ page }) => {
+
+    await page.goto('https://www.saucedemo.com/');
+    await page.locator('//*[@id="user-name"]').type('standard_user');
+    await page.locator('//*[@id="password"]').type('secret_sauce');
+    await page.locator('//*[@id="login-button"]').click();
+    expect(await page.locator('//*[@id="header_container"]/div[2]/span').textContent() == 'Products');
+
+    const inventoryItems = await page.$$('.inventory_item');
+    let numItemsInCart = 0;
+    console.log(`Number of inventory items found: ${inventoryItems.length}`);
+
+    for (const item of inventoryItems) {
+        const buttonXPath = `(//div[@class='inventory_list']//div[@class='inventory_item'])[${inventoryItems.indexOf(item) + 1}]//div[2]//button`;
+        const button = page.locator(buttonXPath);
+        await button.click();
+        const buttonText = await button.textContent();
+
+        if (buttonText === 'Remove') {
+            numItemsInCart++;
+        }
+    }
+
+    const cartBadge = page.locator('//*[@id="shopping_cart_container"]/a/span');
+    const cartBadgeText = await cartBadge.textContent();
+    const expectedCartBadgeText = numItemsInCart.toString();
+    console.log(`Cart badge text: ${cartBadgeText} - Actual items added: ${expectedCartBadgeText}`);
+    expect(cartBadgeText).toEqual(expectedCartBadgeText);
+
+});
