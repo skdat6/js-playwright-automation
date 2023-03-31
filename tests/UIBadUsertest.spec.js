@@ -1,5 +1,8 @@
 const { test, expect } = require('@playwright/test');
 
+//tests in a single file run sequencially
+//tests in separate fiels run in parallel
+
 test('Login required', async ({ page }) => {
     await page.goto('https://www.saucedemo.com/inventory.html');
     const message = await page.locator('//*[@id="login_button_container"]/div/form/div[3]/h3').textContent();
@@ -9,7 +12,7 @@ test('Login required', async ({ page }) => {
 
 test('Logout', async ({ page }) => {
     await page.goto('https://www.saucedemo.com/');
-    await page.locator('//*[@id="user-name"]').type('standard_user');
+    await page.locator('//*[@id="user-name"]').type('problem_user');
     await page.locator('//*[@id="password"]').type('secret_sauce');
     await page.locator('//*[@id="login-button"]').click();
     expect(await page.locator('//*[@id="header_container"]/div[2]/span').textContent()).toEqual('Products');
@@ -22,7 +25,7 @@ test('Logout', async ({ page }) => {
 
 test('About page', async ({ page }) => {
     await page.goto('https://www.saucedemo.com/');
-    await page.locator('//*[@id="user-name"]').type('standard_user');
+    await page.locator('//*[@id="user-name"]').type('problem_user');
     await page.locator('//*[@id="password"]').type('secret_sauce');
     await page.locator('//*[@id="login-button"]').click();
     expect(await page.locator('//*[@id="header_container"]/div[2]/span').textContent()).toEqual('Products');
@@ -36,7 +39,7 @@ test('About page', async ({ page }) => {
 test('Sauce Demo Invalid Login', async ({ page }) => {
 
     await page.goto('https://www.saucedemo.com/');
-    await page.locator('//*[@id="user-name"]').type('standard_user222');
+    await page.locator('//*[@id="user-name"]').type('standard_user222222');
     await page.locator('//*[@id="password"]').type('secret_sauce');
     await page.locator('//*[@id="login-button"]').click();
     const message = await page.locator('//*[@id="login_button_container"]/div/form/div[3]/h3').textContent();
@@ -60,7 +63,7 @@ test('Sauce Demo Locked out User', async ({ page }) => {
 test('Sauce Demo Valid Login', async ({ page }) => {
 
     await page.goto('https://www.saucedemo.com/');
-    await page.locator('//*[@id="user-name"]').type('standard_user');
+    await page.locator('//*[@id="user-name"]').type('problem_user');
     await page.locator('//*[@id="password"]').type('secret_sauce');
     await page.locator('//*[@id="login-button"]').click();
     expect(await page.locator('//*[@id="header_container"]/div[2]/span').textContent()).toEqual('Products');
@@ -70,7 +73,7 @@ test('Sauce Demo Valid Login', async ({ page }) => {
 test('Add first item', async ({ page }) => {
 
     await page.goto('https://www.saucedemo.com/');
-    await page.locator('//*[@id="user-name"]').type('standard_user');
+    await page.locator('//*[@id="user-name"]').type('problem_user');
     await page.locator('//*[@id="password"]').type('secret_sauce');
     await page.locator('//*[@id="login-button"]').click();
     expect(await page.locator('//*[@id="header_container"]/div[2]/span').textContent() == 'Products');
@@ -86,7 +89,7 @@ test('Add first item', async ({ page }) => {
 test('Add second item', async ({ page }) => {
 
     await page.goto('https://www.saucedemo.com/');
-    await page.locator('//*[@id="user-name"]').type('standard_user');
+    await page.locator('//*[@id="user-name"]').type('problem_user');
     await page.locator('//*[@id="password"]').type('secret_sauce');
     await page.locator('//*[@id="login-button"]').click();
     expect(await page.locator('//*[@id="header_container"]/div[2]/span').textContent() == 'Products');
@@ -102,7 +105,7 @@ test('Add second item', async ({ page }) => {
 test('Select filter option', async ({ page }) => {
 
     await page.goto('https://www.saucedemo.com/');
-    await page.locator('//*[@id="user-name"]').type('standard_user');
+    await page.locator('//*[@id="user-name"]').type('problem_user');
     await page.locator('//*[@id="password"]').type('secret_sauce');
     await page.locator('//*[@id="login-button"]').click();
     const dropdown = page.locator('select.product_sort_container');
@@ -113,7 +116,7 @@ test('Select filter option', async ({ page }) => {
 test('Items added match cart badge', async ({ page }) => {
 
     await page.goto('https://www.saucedemo.com/');
-    await page.locator('//*[@id="user-name"]').type('standard_user');
+    await page.locator('//*[@id="user-name"]').type('problem_user');
     await page.locator('//*[@id="password"]').type('secret_sauce');
     await page.locator('//*[@id="login-button"]').click();
     expect(await page.locator('//*[@id="header_container"]/div[2]/span').textContent() == 'Products');
