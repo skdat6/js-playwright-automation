@@ -9,7 +9,7 @@ pipeline {
       stage('install playwright') {
          steps {
             // Depends on your language / test framework
-            bat '''
+            sh '''
             npm i -D @playwright/test
             npx playwright install
             '''
@@ -19,14 +19,14 @@ pipeline {
       stage('playwright help') {
          steps {
             // Depends on your language / test framework
-            bat 'npx playwright test --help'
+            sh 'npx playwright test --help'
          }
       }
       stage('e2e-tests') {
          steps {
             // Depends on your language / test framework
-            bat 'npx playwright test tests/UIBadUsertest.spec.js --project=chromium --list'
-            bat 'npx playwright test tests/UIBadUsertest.spec.js --project=chromium'
+            sh 'npx playwright test tests/UIBadUsertest.spec.js --project=chromium --list'
+            sh 'npx playwright test tests/UIBadUsertest.spec.js --project=chromium'
             
          }
       }
